@@ -15,7 +15,7 @@ import Error from "./pages/Error";
 import Profile from "./pages/Profile";
 import Orders from "./pages/Orders";
 import Posts from "./pages/Posts";
-import Notes from "./pages/Notifications";
+import Notes from "./pages/Notes";
 import Calendar from "./pages/Calendar";
 import Charts from "./pages/Charts";
 import Logs from "./pages/Logs";
