@@ -11,92 +11,81 @@ import {
   HiOutlinePresentationChartBar,
   HiOutlineDocumentText,
   HiOutlineArrowLeftOnRectangle,
-} from 'react-icons/hi2';
+} from "react-icons/hi2";
 // import { IoSettingsOutline } from 'react-icons/io5';
 
 export const menu = [
   {
-    catalog: 'main',
+    catalog: "main",
     listItems: [
       {
         isLink: true,
-        url: '/',
+        url: "/",
         icon: HiOutlineHome,
-        label: 'homepage',
-      },
-      {
-        isLink: true,
-        url: '/profile',
-        icon: HiOutlineUser,
-        label: 'profile',
+        label: "Dashboard",
       },
     ],
   },
   {
-    catalog: 'lists',
+    catalog: "analytics",
     listItems: [
       {
         isLink: true,
-        url: '/users',
-        icon: HiOutlineUsers,
-        label: 'users',
-      },
-      {
-        isLink: true,
-        url: '/products',
-        icon: HiOutlineCube,
-        label: 'products',
-      },
-      {
-        isLink: true,
-        url: '/orders',
-        icon: HiOutlineClipboardDocumentList,
-        label: 'orders',
-      },
-      {
-        isLink: true,
-        url: '/posts',
-        icon: HiOutlineDocumentChartBar,
-        label: 'posts',
-      },
-    ],
-  },
-  {
-    catalog: 'general',
-    listItems: [
-      {
-        isLink: true,
-        url: '/notes',
-        icon: HiOutlinePencilSquare,
-        label: 'notes',
-      },
-      {
-        isLink: true,
-        url: '/calendar',
-        icon: HiOutlineCalendarDays,
-        label: 'calendar',
-      },
-    ],
-  },
-  {
-    catalog: 'analytics',
-    listItems: [
-      {
-        isLink: true,
-        url: '/charts',
+        url: "/charts",
         icon: HiOutlinePresentationChartBar,
-        label: 'charts',
+        label: "charts",
       },
       {
         isLink: true,
-        url: '/logs',
+        url: "/logs",
         icon: HiOutlineDocumentText,
-        label: 'logs',
+        label: "logs",
       },
     ],
   },
   {
-    catalog: 'miscellaneous',
+    catalog: "lists",
+    listItems: [
+      {
+        isLink: true,
+        url: "/users",
+        icon: HiOutlineUsers,
+        label: "users",
+      },
+      {
+        isLink: true,
+        url: "/products",
+        icon: HiOutlineCube,
+        label: "products",
+      },
+      {
+        isLink: true,
+        url: "/orders",
+        icon: HiOutlineClipboardDocumentList,
+        label: "orders",
+      },
+      {
+        isLink: true,
+        url: "/news",
+        icon: HiOutlineDocumentChartBar,
+        label: "news",
+      },
+    ],
+  },
+  {
+    catalog: "general",
+    listItems: [
+      {
+        isLink: true,
+        url: "/calendar",
+        icon: HiOutlineCalendarDays,
+        label: "calendar",
+      },
+    ],
+  },
+
+  {
+    catalog: "miscellaneous",
     listItems: [
       // {
       //   isLink: true,
@@ -106,9 +95,9 @@ export const menu = [
       // },
       {
         isLink: true,
-        url: '/login',
+        url: "/login",
         icon: HiOutlineArrowLeftOnRectangle,
-        label: 'log out',
+        label: "log out",
       },
     ],
   },
