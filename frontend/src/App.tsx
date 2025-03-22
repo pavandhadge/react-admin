@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Users from "./pages/Users";
-import Products from "./pages/Products";
+import DetedtedAnamoly from "./pages/DetectedAnamoly";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Menu from "./components/menu/Menu";
@@ -84,8 +84,8 @@ function App() {
           element: <User />,
         },
         {
-          path: "/products",
-          element: <Products />,
+          path: "/detectedanamoly",
+          element: <DetedtedAnamoly />,
         },
         {
           path: "/products/:id",

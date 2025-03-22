@@ -54,9 +54,9 @@ export const menu = [
       },
       {
         isLink: true,
-        url: "/products",
+        url: "/detectedanamoly",
         icon: HiOutlineCube,
-        label: "products",
+        label: "Anamoly",
       },
       {
         isLink: true,

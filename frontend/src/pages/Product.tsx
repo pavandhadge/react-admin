@@ -1,8 +1,8 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import { useQuery } from '@tanstack/react-query';
-import { fetchSingleProduct } from '../api/ApiCollection';
+import React from "react";
+import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import { fetchSingleProduct } from "../api/ApiCollection";
 import {
   LineChart,
   Line,
@@ -11,49 +11,49 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
 const Product = () => {
   const tempEntries: number[] = [1, 2, 3, 4, 5];
   const dataLine = [
     {
-      name: 'Jan',
+      name: "Jan",
       purchased: 4000,
       wishlisted: 2400,
       amt: 2400,
     },
     {
-      name: 'Feb',
+      name: "Feb",
       purchased: 3000,
       wishlisted: 1398,
       amt: 2210,
     },
     {
-      name: 'Mar',
+      name: "Mar",
       purchased: 2000,
       wishlisted: 9800,
       amt: 2290,
     },
     {
-      name: 'Apr',
+      name: "Apr",
       purchased: 2780,
       wishlisted: 3908,
       amt: 2000,
     },
     {
-      name: 'May',
+      name: "May",
       purchased: 1890,
       wishlisted: 4800,
       amt: 2181,
     },
     {
-      name: 'Jun',
+      name: "Jun",
       purchased: 2390,
       wishlisted: 3800,
       amt: 2500,
     },
     {
-      name: 'Jul',
+      name: "Jul",
       purchased: 3490,
       wishlisted: 4300,
       amt: 2100,
@@ -65,22 +65,22 @@ const Product = () => {
   // const navigate = useNavigate();
 
   const { isLoading, isError, data, isSuccess } = useQuery({
-    queryKey: ['user', id],
-    queryFn: () => fetchSingleProduct(id || ''),
+    queryKey: ["user", id],
+    queryFn: () => fetchSingleProduct(id || ""),
   });
 
   React.useEffect(() => {
     if (isLoading) {
-      toast.loading('Loading...', { id: 'promiseRead' });
+      toast.loading("Loading...", { id: "promiseRead" });
     }
     if (isError) {
-      toast.error('Error while getting the data!', {
-        id: 'promiseRead',
+      toast.error("Error while getting the data!", {
+        id: "promiseRead",
       });
     }
     if (isSuccess) {
-      toast.success('Read the data successfully!', {
-        id: 'promiseRead',
+      toast.success("Read the data successfully!", {
+        id: "promiseRead",
       });
     }
   }, [isError, isLoading, isSuccess]);
@@ -109,7 +109,7 @@ const Product = () => {
                       />
                     </div>
                   ) : (
-                    ''
+                    ""
                   )}
                 </div>
                 <div className="flex flex-col items-start gap-1">
@@ -122,9 +122,7 @@ const Product = () => {
                   ) : (
                     <div className="w-[200px] h-[36px] skeleton dark:bg-neutral"></div>
                   )}
-                  <span className="font-normal text-base">
-                    Exclusive
-                  </span>
+                  <span className="font-normal text-base">Exclusive</span>
                 </div>
               </div>
             </div>
@@ -145,17 +143,11 @@ const Product = () => {
                   {/* column 2 */}
                   <div className="col-span-2 flex flex-col items-start gap-3 xl:gap-5">
                     <span className="font-semibold">{data.id}</span>
+                    <span className="font-semibold">{data.color}</span>
+                    <span className="font-semibold">{data.price}</span>
+                    <span className="font-semibold">{data.producer}</span>
                     <span className="font-semibold">
-                      {data.color}
-                    </span>
-                    <span className="font-semibold">
-                      {data.price}
-                    </span>
-                    <span className="font-semibold">
-                      {data.producer}
-                    </span>
-                    <span className="font-semibold">
-                      {data.inStock ? 'In stock' : 'Out of stock'}
+                      {data.inStock ? "In stock" : "Out of stock"}
                     </span>
                   </div>
                 </div>
@@ -177,16 +169,8 @@ const Product = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="purchased"
-                    stroke="#8884d8"
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="wishlisted"
-                    stroke="#82ca9d"
-                  />
+                  <Line type="monotone" dataKey="purchased" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="wishlisted" stroke="#82ca9d" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -195,10 +179,7 @@ const Product = () => {
           )}
         </div>
         {/* column 2 */}
-        <div
-          id="activities"
-          className="w-full flex flex-col items-start gap-5"
-        >
+        <div id="activities" className="w-full flex flex-col items-start gap-5">
           <h2 className="text-2xl font-semibold dark:text-white">
             Latest Activities
           </h2>
@@ -219,9 +200,7 @@ const Product = () => {
               </li>
               <li>
                 <div className="ml-[1px] relative p-4 bg-base-200 dark:bg-neutral dark:text-neutral-50 min-w-[85vw] xl:min-w-[480px] flex flex-col items-start gap-3">
-                  <span>
-                    Kurt Cobain added {data.title} into wishlist
-                  </span>
+                  <span>Kurt Cobain added {data.title} into wishlist</span>
                   <span className="text-xs">1 week ago</span>
                 </div>
               </li>
@@ -233,9 +212,7 @@ const Product = () => {
               </li>
               <li>
                 <div className="ml-[1px] relative p-4 bg-base-200 dark:bg-neutral dark:text-neutral-50 min-w-[85vw] xl:min-w-[480px] flex flex-col items-start gap-3">
-                  <span>
-                    Jose Rose added {data.title} into wishlist
-                  </span>
+                  <span>Jose Rose added {data.title} into wishlist</span>
                   <span className="text-xs">3 weeks ago</span>
                 </div>
               </li>

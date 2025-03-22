@@ -22,6 +22,7 @@ import totalRevenueByProducts from "./data/totalRevenueByProducts";
 import notes from "./data/notes";
 import logs from "./data/logs";
 import notification from "./data/notifications";
+import detectedanamoly from "./data/fetchdetectedanamoly";
 require("dotenv").config();
 
 const app = express();
@@ -71,8 +72,8 @@ app.get("/users/:id", (req, res) => {
 });
 
 // GET PRODUCTS
-app.get("/products", (req, res) => {
-  res.json(products);
+app.get("/fetchdetectedanamoly", (req, res) => {
+  res.json(detectedanamoly);
 });
 
 // GET A PRODUCT
