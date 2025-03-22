@@ -1,11 +1,11 @@
-import React from 'react';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
+import React from "react";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
-import NoteCard from '../components/notes/NoteCard';
-import { fetchNotes } from '../api/ApiCollection';
-import { HiOutlineXMark } from 'react-icons/hi2';
+import NoteCard from "../components/notes/NoteCard";
+import { fetchNotes } from "../api/ApiCollection";
+import { HiOutlineXMark } from "react-icons/hi2";
 // import { allNotes } from '../components/notes/data';
 
 interface Note {
@@ -19,42 +19,42 @@ interface Note {
 
 const Notes = () => {
   const [allNotes, setAllNotes] = React.useState([]);
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState("");
 
   const [noteSelected, setNoteSelected] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({
-    title: '',
-    body: '',
+    title: "",
+    body: "",
   });
-  const [titleSelected, setTitleSelected] = React.useState('');
-  const [bodySelected, setBodySelected] = React.useState('');
-  const [topicSelected, setTopicSelected] = React.useState('');
+  const [titleSelected, setTitleSelected] = React.useState("");
+  const [bodySelected, setBodySelected] = React.useState("");
+  const [topicSelected, setTopicSelected] = React.useState("");
 
   const tempTotalEntries = [1, 2, 3, 4, 5, 6, 7];
 
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['notes'],
+    queryKey: ["notes"],
     queryFn: fetchNotes,
   });
 
   React.useEffect(() => {
     if (isLoading) {
-      toast.loading('Loading...', { id: 'promiseNotes' });
+      toast.loading("Loading...", { id: "promiseNotes" });
     }
     if (isError) {
-      toast.error('Error while getting the data!', {
-        id: 'promiseNotes',
+      toast.error("Error while getting the data!", {
+        id: "promiseNotes",
       });
     }
     if (isSuccess) {
-      toast.success('Got the data successfully!', {
-        id: 'promiseNotes',
+      toast.success("Got the data successfully!", {
+        id: "promiseNotes",
       });
     }
   }, [isError, isLoading, isSuccess]);
 
   React.useEffect(() => {
-    console.log('Ini datanya:', data);
+    console.log("Ini datanya:", data);
     setAllNotes(data);
     // console.log('Ini notes nya:', allNotes);
   }, [data]);
@@ -62,7 +62,7 @@ const Notes = () => {
   React.useEffect(() => {
     const fetchSpesificNote = async () => {
       const res = await axios.get(
-        `https://react-admin-ui-v1-api.vercel.app/notes?q=${searchQuery}`
+        `https://react-admin-ui-v1-api.vercel.app/notes?q=${searchQuery}`,
       );
       setAllNotes(res.data);
     };
@@ -95,9 +95,7 @@ const Notes = () => {
                 type="text"
                 placeholder="Search"
                 className="input input-bordered w-full"
-                onChange={(e) =>
-                  setSearchQuery(e.target.value.toLowerCase())
-                }
+                onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
               />
             </div>
 
@@ -144,49 +142,49 @@ const Notes = () => {
             ) : (
               <div className="sticky xl:top-[90px] xl:h-[80vh] z-10 flex flex-col items-start gap-5 xl:pr-10 xl:pb-10 overflow-y-auto">
                 <div className="relative w-full xl:h-[360px] 2xl:h-[500px] 3xl:h-[660px] flex justify-center">
-                  {topicSelected == 'e-commerce' && (
+                  {topicSelected == "e-commerce" && (
                     <img
                       src="/e-commerce-vector.png"
                       alt="vector"
                       className="object-cover w-auto h-full grayscale"
                     />
                   )}
-                  {topicSelected == 'marketing' && (
+                  {topicSelected == "marketing" && (
                     <img
                       src="/marketing-vector.png"
                       alt="vector"
                       className="object-cover w-auto h-full grayscale"
                     />
                   )}
-                  {topicSelected == 'social-media' && (
+                  {topicSelected == "social-media" && (
                     <img
                       src="/social-media-vector.png"
                       alt="vector"
                       className="object-cover w-auto h-full grayscale"
                     />
                   )}
-                  {topicSelected == 'SEO' && (
+                  {topicSelected == "SEO" && (
                     <img
                       src="/SEO-vector.png"
                       alt="vector"
                       className="object-cover w-auto h-full grayscale"
                     />
                   )}
-                  {topicSelected == 'productivity' && (
+                  {topicSelected == "productivity" && (
                     <img
                       src="/productivity-vector.png"
                       alt="vector"
                       className="object-cover w-auto h-full grayscale"
                     />
                   )}
-                  {topicSelected == 'communication' && (
+                  {topicSelected == "communication" && (
                     <img
                       src="/communication-vector.png"
                       alt="vector"
                       className="object-cover w-auto h-full grayscale"
                     />
                   )}
-                  {topicSelected == '' && (
+                  {topicSelected == "" && (
                     <img
                       src="/e-commerce-vector.png"
                       alt="vector"
@@ -209,27 +207,27 @@ const Notes = () => {
           onClick={() => {
             setNoteSelected(false);
             setSelectedCard({
-              title: '',
-              body: '',
+              title: "",
+              body: "",
             });
           }}
           className={`w-screen h-screen left-0 bottom-0 fixed z-[99] flex items-end transition-all duration-[2s] bg-black/50
             ${
               noteSelected
-                ? 'opacity-100 inline-flex xl:hidden'
-                : 'opacity-0 hidden'
+                ? "opacity-100 inline-flex xl:hidden"
+                : "opacity-0 hidden"
             }`}
         >
           <div
             className={`relative w-full h-[70vh] flex flex-col items-start gap-3 bg-base-100 rounded-t-3xl p-5 transition-all duration-[1s] overflow-auto
-              ${noteSelected ? 'translate-y-0' : 'translate-y-full'}`}
+              ${noteSelected ? "translate-y-0" : "translate-y-full"}`}
           >
             <button
               onClick={() => {
                 setNoteSelected(false);
                 setSelectedCard({
-                  title: '',
-                  body: '',
+                  title: "",
+                  body: "",
                 });
               }}
               className="btn btn-circle fixed top-5 right-5 z-[99]"
@@ -237,49 +235,49 @@ const Notes = () => {
               <HiOutlineXMark />
             </button>
             <div className="relative w-full h-[256px] sm:h-[480px] xl:h-[256px] flex justify-center">
-              {topicSelected == 'e-commerce' && (
+              {topicSelected == "e-commerce" && (
                 <img
                   src="/e-commerce-vector.png"
                   alt="vector"
                   className="object-cover w-auto h-full grayscale"
                 />
               )}
-              {topicSelected == 'marketing' && (
+              {topicSelected == "marketing" && (
                 <img
                   src="/marketing-vector.png"
                   alt="vector"
                   className="object-cover w-auto h-full grayscale"
                 />
               )}
-              {topicSelected == 'social-media' && (
+              {topicSelected == "social-media" && (
                 <img
                   src="/social-media-vector.png"
                   alt="vector"
                   className="object-cover w-auto h-full grayscale"
                 />
               )}
-              {topicSelected == 'SEO' && (
+              {topicSelected == "SEO" && (
                 <img
                   src="/SEO-vector.png"
                   alt="vector"
                   className="object-cover w-auto h-full grayscale"
                 />
               )}
-              {topicSelected == 'productivity' && (
+              {topicSelected == "productivity" && (
                 <img
                   src="/productivity-vector.png"
                   alt="vector"
                   className="object-cover w-auto h-full grayscale"
                 />
               )}
-              {topicSelected == 'communication' && (
+              {topicSelected == "communication" && (
                 <img
                   src="/communication-vector.png"
                   alt="vector"
                   className="object-cover w-auto h-full grayscale"
                 />
               )}
-              {topicSelected == '' && (
+              {topicSelected == "" && (
                 <img
                   src="/e-commerce-vector.png"
                   alt="vector"
@@ -290,9 +288,7 @@ const Notes = () => {
             <h2 className="font-bold text-xl mt-0 pt-0 text-base-content dark:text-neutral-200">
               {titleSelected}
             </h2>
-            <p className="text-lg leading-normal mb-8">
-              {bodySelected}
-            </p>
+            <p className="text-lg leading-normal mb-8">{bodySelected}</p>
           </div>
         </div>
       </div>

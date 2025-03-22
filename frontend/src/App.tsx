@@ -4,27 +4,27 @@ import {
   RouterProvider,
   Outlet,
   ScrollRestoration,
-} from 'react-router-dom';
-import Home from './pages/Home';
-import Users from './pages/Users';
-import Products from './pages/Products';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Menu from './components/menu/Menu';
-import Error from './pages/Error';
-import Profile from './pages/Profile';
-import Orders from './pages/Orders';
-import Posts from './pages/Posts';
-import Notes from './pages/Notes';
-import Calendar from './pages/Calendar';
-import Charts from './pages/Charts';
-import Logs from './pages/Logs';
-import ToasterProvider from './components/ToasterProvider';
-import EditProfile from './pages/EditProfile';
-import User from './pages/User';
-import Product from './pages/Product';
-import Login from './pages/Login';
-
+} from "react-router-dom";
+import Home from "./pages/Home";
+import Users from "./pages/Users";
+import Products from "./pages/Products";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Menu from "./components/menu/Menu";
+import Error from "./pages/Error";
+import Profile from "./pages/Profile";
+import Orders from "./pages/Orders";
+import Posts from "./pages/Posts";
+import Notes from "./pages/Notifications";
+import Calendar from "./pages/Calendar";
+import Charts from "./pages/Charts";
+import Logs from "./pages/Logs";
+import ToasterProvider from "./components/ToasterProvider";
+import EditProfile from "./pages/EditProfile";
+import User from "./pages/User";
+import Product from "./pages/Product";
+import Login from "./pages/Login";
+import Notification from "./pages/Notifications";
 function App() {
   const Layout = () => {
     return (
@@ -52,66 +52,70 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <Layout />,
       children: [
         {
-          path: '/',
+          path: "/",
           element: <Home />,
         },
         {
-          path: '/profile',
+          path: "/profile",
           element: <Profile />,
         },
         {
-          path: '/profile/edit',
+          path: "/profile/edit",
           element: <EditProfile />,
         },
         {
-          path: '/users',
+          path: "/users",
           element: <Users />,
         },
         {
-          path: '/users/:id',
+          path: "/users/:id",
           element: <User />,
         },
         {
-          path: '/products',
+          path: "/products",
           element: <Products />,
         },
         {
-          path: '/products/:id',
+          path: "/products/:id",
           element: <Product />,
         },
         {
-          path: '/orders',
+          path: "/orders",
           element: <Orders />,
         },
         {
-          path: '/posts',
+          path: "/posts",
           element: <Posts />,
         },
         {
-          path: '/notes',
+          path: "/notification",
+          element: <Notification />,
+        },
+        {
+          path: "/notes",
           element: <Notes />,
         },
         {
-          path: '/calendar',
+          path: "/calendar",
           element: <Calendar />,
         },
         {
-          path: '/charts',
+          path: "/charts",
           element: <Charts />,
         },
         {
-          path: '/logs',
+          path: "/logs",
           element: <Logs />,
         },
       ],
       errorElement: <Error />,
     },
     {
-      path: '/login',
+      path: "/login",
       element: <Login />,
     },
   ]);

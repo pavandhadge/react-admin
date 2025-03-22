@@ -71,9 +71,15 @@ export const menu = [
     listItems: [
       {
         isLink: true,
+        url: "/notification",
+        icon: HiOutlinePencilSquare,
+        label: "Notifications",
+      },
+      {
+        isLink: true,
         url: "/notes",
         icon: HiOutlinePencilSquare,
-        label: "News",
+        label: "Notes",
       },
       {
         isLink: true,
