@@ -1,6 +1,6 @@
-import React from 'react';
-import toast from 'react-hot-toast';
-import { IconType } from 'react-icons';
+import React from "react";
+import toast from "react-hot-toast";
+import { IconType } from "react-icons";
 import {
   LineChart,
   BarChart,
@@ -17,7 +17,7 @@ import {
   Tooltip,
   // Legend,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
 interface ChartBoxProps {
   chartType: string; // 'line', 'bar', 'area', 'pie'
@@ -58,7 +58,7 @@ const ChartBox: React.FC<ChartBoxProps> = ({
   isLoading,
   isSuccess,
 }) => {
-  if (chartType === 'line') {
+  if (chartType === "line") {
     if (isLoading) {
       return (
         <div className="w-full h-full flex justify-between items-end xl:gap-5">
@@ -99,8 +99,8 @@ const ChartBox: React.FC<ChartBoxProps> = ({
             </span>
             <button
               onClick={() =>
-                toast('Ngapain?', {
-                  icon: '😋',
+                toast("Ngapain?", {
+                  icon: "😋",
                 })
               }
               className="px-0 py-0 min-h-0 max-h-5 btn btn-link font-medium text-base-content no-underline m-0"
@@ -122,14 +122,14 @@ const ChartBox: React.FC<ChartBoxProps> = ({
                   <Tooltip
                     contentStyle={{
                       background: color,
-                      border: 'none',
-                      color: 'white',
-                      borderRadius: '8px',
-                      paddingTop: '0px',
-                      paddingBottom: '0px',
+                      border: "none",
+                      color: "white",
+                      borderRadius: "8px",
+                      paddingTop: "0px",
+                      paddingBottom: "0px",
                     }}
-                    itemStyle={{ color: 'white' }}
-                    labelStyle={{ display: 'none' }}
+                    itemStyle={{ color: "white" }}
+                    labelStyle={{ display: "none" }}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -137,12 +137,10 @@ const ChartBox: React.FC<ChartBoxProps> = ({
             <div className="flex xl:flex-col 2xl:flex-row gap-2 xl:gap-2 items-end xl:items-end 2xl:items-center">
               <span
                 className={`${
-                  percentage && percentage > 0
-                    ? 'text-success'
-                    : 'text-error'
+                  percentage && percentage > 0 ? "text-success" : "text-error"
                 } text-2xl xl:text-xl 2xl:text-3xl font-bold`}
               >
-                {percentage || ''}%
+                {percentage || ""}%
               </span>
               <span className="font-medium xl:text-sm 2xl:text-base">
                 this month
@@ -156,12 +154,12 @@ const ChartBox: React.FC<ChartBoxProps> = ({
     return null;
   }
 
-  if (chartType === 'bar') {
+  if (chartType === "bar") {
     if (isLoading) {
       return (
         <div className="w-full h-full p-0 m-0 flex flex-col items-start gap-3 xl:gap-4">
           <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-            {title || 'No title'}
+            {title || "No title"}
           </span>
           <div className="w-full min-h-40 xl:min-h-[150px] skeleton"></div>
         </div>
@@ -172,22 +170,50 @@ const ChartBox: React.FC<ChartBoxProps> = ({
       return (
         <div className="w-full h-full p-0 m-0 flex flex-col items-start 3xl:justify-between gap-3 xl:gap-4">
           <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-            {title || 'No title'}
+            {title || "No title"}
           </span>
-          <div className="w-full min-h-40 xl:min-h-[150px] 2xl:min-h-[180px] 3xl:min-h-[250px]">
+          <div className="w-full min-h-40 xl:min-h-[440px] 2xl:min-h-[440px] 3xl:min-h-[440px]">
             {chartData ? (
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>
-                  <Bar dataKey={dataKey || ''} fill={color || ''} />
-                  <XAxis dataKey="name" />
+                  <Bar dataKey={dataKey || ""} fill={color || ""} />
+
+                  {/* X-Axis */}
+                  <XAxis
+                    dataKey="name"
+                    tick={{ fontSize: 12, fill: "#333" }} // Subtle text color
+                    tickLine={{ stroke: "#ddd", strokeWidth: 1 }} // Subtle tick lines
+                    axisLine={{ stroke: "#ddd", strokeWidth: 1 }} // Subtle axis line
+                    label={{
+                      value: "Categories", // Add a label for clarity
+                      position: "bottom",
+                      fontSize: 14,
+                      fill: "#555",
+                    }}
+                  />
+
+                  {/* Y-Axis */}
+                  <YAxis
+                    tick={{ fontSize: 12, fill: "#333" }} // Subtle text color
+                    tickLine={{ stroke: "#ddd", strokeWidth: 1 }} // Subtle tick lines
+                    axisLine={{ stroke: "#ddd", strokeWidth: 1 }} // Subtle axis line
+                    label={{
+                      value: "Values", // Add a label for clarity
+                      angle: -90,
+                      position: "left",
+                      fontSize: 14,
+                      fill: "#555",
+                    }}
+                  />
+
                   <Tooltip
                     contentStyle={{
                       background: color,
-                      borderRadius: '5px',
+                      borderRadius: "5px",
                     }}
-                    itemStyle={{ color: 'white' }}
-                    labelStyle={{ display: 'none' }}
-                    cursor={{ fill: 'none' }}
+                    itemStyle={{ color: "white" }}
+                    labelStyle={{ display: "none" }}
+                    cursor={{ fill: "none" }}
                   />
                 </BarChart>
               </ResponsiveContainer>
@@ -202,12 +228,12 @@ const ChartBox: React.FC<ChartBoxProps> = ({
     return null;
   }
 
-  if (chartType === 'pie') {
+  if (chartType === "pie") {
     if (isLoading) {
       return (
         <div className="w-full h-full p-0 m-0 flex flex-col items-start justify-between gap-3 xl:gap-4">
           <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-            {title || 'no title'}
+            {title || "no title"}
           </span>
           <div className="w-full min-h-[300px] skeleton"></div>
           <div className="w-full flex flex-col 2xl:flex-row justify-between gap-2 items-start 2xl:items-center 2xl:flex-wrap">
@@ -224,7 +250,7 @@ const ChartBox: React.FC<ChartBoxProps> = ({
       return (
         <div className="w-full h-full p-0 m-0 flex flex-col items-start justify-between gap-3 xl:gap-4">
           <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-            {title || 'no title'}
+            {title || "no title"}
           </span>
           <div className="w-full min-h-[300px] 2xl:min-h-[360px] 3xl:min-h-[420px]">
             {chartPieData ? (
@@ -232,14 +258,14 @@ const ChartBox: React.FC<ChartBoxProps> = ({
                 <PieChart>
                   <Tooltip
                     contentStyle={{
-                      background: 'white',
-                      borderRadius: '5px',
+                      background: "white",
+                      borderRadius: "5px",
                     }}
                   />
                   <Pie
                     data={chartPieData}
-                    innerRadius={'70%'}
-                    outerRadius={'90%'}
+                    innerRadius={"70%"}
+                    outerRadius={"90%"}
                     paddingAngle={3}
                     dataKey="value"
                   >
@@ -250,7 +276,7 @@ const ChartBox: React.FC<ChartBoxProps> = ({
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              'no data'
+              "no data"
             )}
           </div>
           <div className="w-full flex flex-col 2xl:flex-row justify-between gap-2 items-start 2xl:items-center 2xl:flex-wrap">
@@ -277,12 +303,12 @@ const ChartBox: React.FC<ChartBoxProps> = ({
     return null;
   }
 
-  if (chartType === 'area') {
+  if (chartType === "area") {
     if (isLoading) {
       return (
         <div className="w-full h-full p-0 m-0 flex flex-col items-start gap-4 xl:gap-7 justify-between">
           <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-            {title || 'no title'}
+            {title || "no title"}
           </span>
           <div className="w-full min-h-[300px] skeleton"></div>
         </div>
@@ -293,7 +319,7 @@ const ChartBox: React.FC<ChartBoxProps> = ({
       return (
         <div className="w-full h-full p-0 m-0 flex flex-col items-start gap-4 xl:gap-7 justify-between">
           <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-            {title || 'no title'}
+            {title || "no title"}
           </span>
           <div className="w-full min-h-[300px] 2xl:min-h-[360px] 3xl:min-h-[420px]">
             {chartAreaData ? (
@@ -334,7 +360,7 @@ const ChartBox: React.FC<ChartBoxProps> = ({
                 </AreaChart>
               </ResponsiveContainer>
             ) : (
-              'no data'
+              "no data"
             )}
           </div>
         </div>
