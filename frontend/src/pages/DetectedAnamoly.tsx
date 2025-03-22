@@ -5,44 +5,40 @@ import { fetchdetectedanamoly } from "../api/ApiCollection";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import AddData from "../components/AddData";
-import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
+import {
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Chip,
+  OutlinedInput,
+} from "@mui/material";
 
-const categoryOptions = [
-  "All",
-  "Electronics",
-  "Clothing",
-  "Automotive",
-  "Food",
-];
-const regionOptions = [
-  "All",
-  "North America",
-  "Europe",
-  "Asia",
-  "South America",
-];
+const categoryOptions = ["Electronics", "Clothing", "Automotive", "Food"];
+const regionOptions = ["North America", "Europe", "Asia", "South America"];
 
 const DetedtedAnamoly = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedRegion, setSelectedRegion] = useState("All");
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedRegions, setSelectedRegions] = useState([]);
   const { isLoading, isError, isSuccess, data } = useQuery({
     queryKey: ["fetchdetectedanamoly"],
     queryFn: fetchdetectedanamoly,
   });
 
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+    setSelectedCategories(event.target.value);
   };
 
   const handleRegionChange = (event) => {
-    setSelectedRegion(event.target.value);
+    setSelectedRegions(event.target.value);
   };
 
   const filteredData = data?.filter(
     (item) =>
-      (selectedCategory === "All" || item.category === selectedCategory) &&
-      (selectedRegion === "All" || item.region === selectedRegion),
+      (selectedCategories.length === 0 ||
+        selectedCategories.includes(item.category)) &&
+      (selectedRegions.length === 0 || selectedRegions.includes(item.region)),
   );
 
   const columns: GridColDef[] = [
@@ -105,7 +101,19 @@ const DetedtedAnamoly = () => {
         <div className="w-full flex gap-4 mb-4">
           <FormControl className="w-1/2">
             <InputLabel>Category</InputLabel>
-            <Select value={selectedCategory} onChange={handleCategoryChange}>
+            <Select
+              multiple
+              value={selectedCategories}
+              onChange={handleCategoryChange}
+              input={<OutlinedInput label="Category" />}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </div>
+              )}
+            >
               {categoryOptions.map((option) => (
                 <MenuItem key={option} value={option}>
                   {option}
@@ -115,7 +123,19 @@ const DetedtedAnamoly = () => {
           </FormControl>
           <FormControl className="w-1/2">
             <InputLabel>Region</InputLabel>
-            <Select value={selectedRegion} onChange={handleRegionChange}>
+            <Select
+              multiple
+              value={selectedRegions}
+              onChange={handleRegionChange}
+              input={<OutlinedInput label="Region" />}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </div>
+              )}
+            >
               {regionOptions.map((option) => (
                 <MenuItem key={option} value={option}>
                   {option}
