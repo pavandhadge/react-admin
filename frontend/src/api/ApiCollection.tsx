@@ -177,9 +177,9 @@ export const fetchSingleUser = async (id: string) => {
 };
 
 // GET ALL PRODUCTS
-export const fetchProducts = async () => {
+export const fetchdetectedanamoly = async () => {
   const response = await axios
-    .get("https://react-admin-ui-v1-api.vercel.app/products")
+    .get("http://localhost:5000/fetchdetectedanamoly")
     .then((res) => {
       console.log("axios get:", res.data);
       return res.data;
