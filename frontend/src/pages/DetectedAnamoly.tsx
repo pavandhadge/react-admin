@@ -1,17 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import DataTable from "../components/DataTable";
 import { fetchdetectedanamoly } from "../api/ApiCollection";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import AddData from "../components/AddData";
+import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
+
+const categoryOptions = [
+  "All",
+  "Electronics",
+  "Clothing",
+  "Automotive",
+  "Food",
+];
+const regionOptions = [
+  "All",
+  "North America",
+  "Europe",
+  "Asia",
+  "South America",
+];
 
 const DetedtedAnamoly = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedRegion, setSelectedRegion] = useState("All");
   const { isLoading, isError, isSuccess, data } = useQuery({
     queryKey: ["fetchdetectedanamoly"],
     queryFn: fetchdetectedanamoly,
   });
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const handleRegionChange = (event) => {
+    setSelectedRegion(event.target.value);
+  };
+
+  const filteredData = data?.filter(
+    (item) =>
+      (selectedCategory === "All" || item.category === selectedCategory) &&
+      (selectedRegion === "All" || item.region === selectedRegion),
+  );
 
   const columns: GridColDef[] = [
     { field: "date", headerName: "Date", width: 150 },
@@ -47,14 +79,10 @@ const DetedtedAnamoly = () => {
       toast.loading("Loading...", { id: "promiseProducts" });
     }
     if (isError) {
-      toast.error("Error while getting the data!", {
-        id: "promiseProducts",
-      });
+      toast.error("Error while getting the data!", { id: "promiseProducts" });
     }
     if (isSuccess) {
-      toast.success("Got the data successfully!", {
-        id: "promiseProducts",
-      });
+      toast.success("Got the data successfully!", { id: "promiseProducts" });
     }
   }, [isError, isLoading, isSuccess]);
 
@@ -68,16 +96,33 @@ const DetedtedAnamoly = () => {
             </h2>
             {data && data.length > 0 && (
               <span className="text-neutral dark:text-neutral-content font-medium text-base">
-                {data.length} Anamolies Found
+                {filteredData.length} Anamolies Found
               </span>
             )}
           </div>
-          {/* <button
-            onClick={() => setIsOpen(true)}
-            className={`btn ${isLoading ? "btn-disabled" : "btn-primary"}`}
-          >
-            Add New Product +
-          </button> */}
+        </div>
+
+        <div className="w-full flex gap-4 mb-4">
+          <FormControl className="w-1/2">
+            <InputLabel>Category</InputLabel>
+            <Select value={selectedCategory} onChange={handleCategoryChange}>
+              {categoryOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl className="w-1/2">
+            <InputLabel>Region</InputLabel>
+            <Select value={selectedRegion} onChange={handleRegionChange}>
+              {regionOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
 
         {isLoading ? (
@@ -91,7 +136,7 @@ const DetedtedAnamoly = () => {
           <DataTable
             slug="products"
             columns={columns}
-            rows={data}
+            rows={filteredData}
             includeActionColumn={false}
           />
         ) : (
