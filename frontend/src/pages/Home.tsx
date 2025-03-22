@@ -122,6 +122,7 @@ const Home = () => {
         <div className="box row-span-2 col-span-full xl:col-span-4 3xl:row-span-6">
           <ChartBox
             chartType={"area"}
+            // chartType={"line"}
             title="Revenue by Products"
             {...queryGetTotalRevenueByProducts.data}
             isLoading={queryGetTotalRevenueByProducts.isLoading}
