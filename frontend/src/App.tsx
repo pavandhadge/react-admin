@@ -44,7 +44,7 @@ function App() {
 
           <div className="flex w-full">
             {/* Fixed Sidebar */}
-            <div className="fixed xl:block xl:w-[250px] 2xl:w-[280px] 3xl:w-[300px] border-r-2 border-base-300 dark:border-slate-700 px-3 xl:px-4 xl:py-1 top-[96px] bottom-0 overflow-y-auto">
+            <div className="fixed xl:block xl:w-[250px] 2xl:w-[280px] 3xl:w-[300px] border-r-2 border-base-300 dark:border-slate-700 pr-4 xl:py-1 top-[96px] bottom-0 overflow-y-auto">
               <Menu />
             </div>
 
