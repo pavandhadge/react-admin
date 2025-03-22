@@ -28,25 +28,33 @@ import Notification from "./pages/Notifications";
 function App() {
   const Layout = () => {
     return (
-      <div
-        id="rootContainer"
-        className="w-full p-0 m-0 overflow-visible min-h-screen flex flex-col justify-between"
-      >
-        <ToasterProvider />
-        <ScrollRestoration />
-        <div>
+      <>
+        {/* Fixed Navbar */}
+        <div className="fixed w-full top-0 left-0 z-50">
           <Navbar />
-          <div className="w-full flex gap-0 pt-20 xl:pt-[96px] 2xl:pt-[112px] mb-auto">
-            <div className="hidden xl:block xl:w-[250px] 2xl:w-[280px] 3xl:w-[350px] border-r-2 border-base-300 dark:border-slate-700 px-3 xl:px-4 xl:py-1">
+        </div>
+
+        {/* Main content layout */}
+        <div
+          id="rootContainer"
+          className="w-full p-4 m-0 overflow-visible min-h-screen flex justify-between"
+        >
+          <ToasterProvider />
+          <ScrollRestoration />
+
+          <div className="flex w-full">
+            {/* Fixed Sidebar */}
+            <div className="fixed xl:block xl:w-[250px] 2xl:w-[280px] 3xl:w-[300px] border-r-2 border-base-300 dark:border-slate-700 px-3 xl:px-4 xl:py-1 top-[96px] bottom-0 overflow-y-auto">
               <Menu />
             </div>
-            <div className="w-full px-4 xl:px-4 2xl:px-5 xl:py-2 overflow-clip">
+
+            {/* Main content area */}
+            <div className="w-full  xl:py-2 pt-24 xl:pt-24 ml-[250px] xl:ml-[280px] 2xl:ml-[300px] overflow-y-auto">
               <Outlet />
             </div>
           </div>
         </div>
-        <Footer />
-      </div>
+      </>
     );
   };
 

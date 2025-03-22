@@ -92,7 +92,7 @@ const Navbar = () => {
       {/* navbar items to right */}
       <div className="flex items-center gap-0 xl:gap-1 2xl:gap-2 3xl:gap-5">
         {/* search */}
-        <button
+        {/* <button
           onClick={() =>
             toast("Gaboleh cari!", {
               icon: "😠",
@@ -101,7 +101,7 @@ const Navbar = () => {
           className="hidden sm:inline-flex btn btn-circle btn-ghost"
         >
           <HiSearch className="text-xl 2xl:text-2xl 3xl:text-3xl" />
-        </button>
+        </button> */}
 
         {/* fullscreen */}
         <button
@@ -116,7 +116,7 @@ const Navbar = () => {
         </button>
 
         {/* notification */}
-        <button
+        {/* <button
           onClick={() =>
             toast("Gaada notif!", {
               icon: "😠",
@@ -125,7 +125,7 @@ const Navbar = () => {
           className="px-0 xl:px-auto btn btn-circle btn-ghost"
         >
           <HiOutlineBell className="text-xl 2xl:text-2xl 3xl:text-3xl" />
-        </button>
+        </button> */}
 
         {/* theme */}
         <div className="px-0 xl:px-auto btn btn-circle btn-ghost xl:mr-1">
